@@ -3,6 +3,8 @@ import { EffectCards } from 'swiper/modules'
 import type { Swiper as SwiperType } from 'swiper'
 import Card from './Card'
 
+const MAX_CARDS_PER_GAME = 50
+
 interface CardData {
   id: number
   word: string
@@ -15,6 +17,9 @@ interface CardSwiperProps {
 }
 
 export default function CardSwiper({ cards, onSlideChange }: CardSwiperProps) {
+  // Limit cards for performance
+  const gameCards = cards.slice(0, MAX_CARDS_PER_GAME)
+
   const handleSlideChange = (swiper: SwiperType) => {
     onSlideChange(swiper.activeIndex + 1)
   }
@@ -40,7 +45,7 @@ export default function CardSwiper({ cards, onSlideChange }: CardSwiperProps) {
           slideShadows: false,
         }}
       >
-        {cards.map((card) => (
+        {gameCards.map((card) => (
           <SwiperSlide key={card.id}>
             <Card word={card.word} forbidden={card.forbidden} />
           </SwiperSlide>
