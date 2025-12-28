@@ -113,9 +113,17 @@ body {
   opacity: 0.7;
 }
 
-/* Card realistic shadow */
+/* Card realistic shadow - using box-shadow for better performance */
 .card-container {
-  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.4));
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Swiper performance optimization */
+.card-swiper-wrapper .swiper-slide {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 /* Ensure confetti canvas doesn't block touch events */

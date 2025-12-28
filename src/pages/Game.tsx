@@ -88,6 +88,7 @@ export default function Game() {
   const [gameState, setGameState] = useState<GameState | null>(null)
   const [timerKey, setTimerKey] = useState(0)
   const [gameKey, setGameKey] = useState(0)
+  const [isTimeUp, setIsTimeUp] = useState(false)
 
   const handleStart = (team: 'red' | 'blue', duration: number) => {
     let teams = getTeamsStorage()
@@ -114,6 +115,7 @@ export default function Game() {
 
     setCurrentIndex(1)
     setGameKey(prev => prev + 1)
+    setIsTimeUp(false)
     setGameState({ team, duration })
   }
 
@@ -129,11 +131,12 @@ export default function Game() {
   }, [gameState, baseSeenCount])
 
   const handleTimeUp = useCallback(() => {
-    // Time is up - could add sound or visual feedback here
+    setIsTimeUp(true)
   }, [])
 
   const handleTimerReset = useCallback(() => {
     setTimerKey(prev => prev + 1)
+    setIsTimeUp(false)
   }, [])
 
   const handleBackToStart = () => {
@@ -211,7 +214,7 @@ export default function Game() {
           </div>
         ) : (
           <>
-            <CardSwiper key={gameKey} cards={cards} onSlideChange={handleSlideChange} />
+            <CardSwiper key={gameKey} cards={cards} onSlideChange={handleSlideChange} disabled={isTimeUp} />
 
             {/* Progress */}
             <div className="mt-8">

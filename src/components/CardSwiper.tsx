@@ -14,9 +14,10 @@ interface CardData {
 interface CardSwiperProps {
   cards: CardData[]
   onSlideChange: (index: number) => void
+  disabled?: boolean
 }
 
-export default function CardSwiper({ cards, onSlideChange }: CardSwiperProps) {
+export default function CardSwiper({ cards, onSlideChange, disabled = false }: CardSwiperProps) {
   // Limit cards for performance
   const gameCards = cards.slice(0, MAX_CARDS_PER_GAME)
 
@@ -34,9 +35,12 @@ export default function CardSwiper({ cards, onSlideChange }: CardSwiperProps) {
     >
       <Swiper
         effect="cards"
-        grabCursor
+        grabCursor={!disabled}
         modules={[EffectCards]}
         onSlideChange={handleSlideChange}
+        allowSlideNext={!disabled}
+        allowSlidePrev={!disabled}
+        allowTouchMove={!disabled}
         style={{ width: '100%', height: '100%' }}
         cardsEffect={{
           perSlideOffset: 8,
