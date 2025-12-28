@@ -159,7 +159,7 @@ export default function Game() {
       {/* <Confetti /> */}
 
       {/* Top bar with Timer and Settings */}
-      <div className="absolute top-4 left-0 right-0 z-10 safe-area-top px-4 flex items-center justify-between">
+      <div className="pt-4 safe-area-top px-4 flex items-center justify-between shrink-0">
         {/* Back button */}
         <button
           onClick={handleBackToStart}
