@@ -1,0 +1,884 @@
+{
+  "cards": [
+    {
+      "id": 1,
+      "word": "Erteleme",
+      "forbidden": [
+        "Geciktirmek",
+        "Sonra",
+        "Yapmamak",
+        "Tembellik",
+        "Yarın"
+      ]
+    },
+    {
+      "id": 2,
+      "word": "Tinder",
+      "forbidden": [
+        "Eşleşme",
+        "Sağa Kaydır",
+        "Flört",
+        "Uygulama",
+        "Tanışma"
+      ]
+    },
+    {
+      "id": 3,
+      "word": "Kripto",
+      "forbidden": [
+        "Bitcoin",
+        "Coin",
+        "Blockchain",
+        "Yatırım",
+        "Düşüş"
+      ]
+    },
+    {
+      "id": 4,
+      "word": "Netflix",
+      "forbidden": [
+        "Dizi",
+        "Film",
+        "İzlemek",
+        "Abone",
+        "Yayın"
+      ]
+    },
+    {
+      "id": 5,
+      "word": "Kahve Molası",
+      "forbidden": [
+        "İş",
+        "Ara",
+        "İçmek",
+        "Dinlenmek",
+        "Sohbet"
+      ]
+    },
+    {
+      "id": 6,
+      "word": "Trafik",
+      "forbidden": [
+        "Araba",
+        "Yol",
+        "Sıkışık",
+        "Beklemek",
+        "Korna"
+      ]
+    },
+    {
+      "id": 7,
+      "word": "Akdeniz",
+      "forbidden": [
+        "Deniz",
+        "Tatil",
+        "Antalya",
+        "Yüzmek",
+        "Mavi"
+      ]
+    },
+    {
+      "id": 8,
+      "word": "Döner",
+      "forbidden": [
+        "Et",
+        "Ekmek",
+        "Yemek",
+        "Kebap",
+        "Lavaş"
+      ]
+    },
+    {
+      "id": 9,
+      "word": "Survivor",
+      "forbidden": [
+        "Yarışma",
+        "Ada",
+        "TV",
+        "Eleme",
+        "Acun"
+      ]
+    },
+    {
+      "id": 10,
+      "word": "Spotify",
+      "forbidden": [
+        "Müzik",
+        "Playlist",
+        "Dinlemek",
+        "Uygulama",
+        "Şarkı"
+      ]
+    },
+    {
+      "id": 11,
+      "word": "Memleket",
+      "forbidden": [
+        "Köy",
+        "Doğmak",
+        "Aile",
+        "Bayram",
+        "Gitmek"
+      ]
+    },
+    {
+      "id": 12,
+      "word": "Asansör",
+      "forbidden": [
+        "Yukarı",
+        "Aşağı",
+        "Kat",
+        "Bina",
+        "Düğme"
+      ]
+    },
+    {
+      "id": 13,
+      "word": "Aspirin",
+      "forbidden": [
+        "İlaç",
+        "Baş Ağrısı",
+        "Eczane",
+        "Yutmak",
+        "Ağrı"
+      ]
+    },
+    {
+      "id": 14,
+      "word": "Galatasaray",
+      "forbidden": [
+        "Futbol",
+        "Sarı",
+        "Kırmızı",
+        "Takım",
+        "Şampiyon"
+      ]
+    },
+    {
+      "id": 15,
+      "word": "Karaoke",
+      "forbidden": [
+        "Şarkı",
+        "Mikrofon",
+        "Söylemek",
+        "Eğlence",
+        "Bar"
+      ]
+    },
+    {
+      "id": 16,
+      "word": "İstanbul",
+      "forbidden": [
+        "Şehir",
+        "Boğaz",
+        "Köprü",
+        "Kalabalık",
+        "Trafik"
+      ]
+    },
+    {
+      "id": 17,
+      "word": "Simit",
+      "forbidden": [
+        "Yuvarlak",
+        "Susam",
+        "Çay",
+        "Kahvaltı",
+        "Satıcı"
+      ]
+    },
+    {
+      "id": 18,
+      "word": "Dedikodu",
+      "forbidden": [
+        "Konuşmak",
+        "Arkasından",
+        "Söylemek",
+        "Magazin",
+        "Fısıldamak"
+      ]
+    },
+    {
+      "id": 19,
+      "word": "Jetlag",
+      "forbidden": [
+        "Uçak",
+        "Uyku",
+        "Saat",
+        "Yorgunluk",
+        "Seyahat"
+      ]
+    },
+    {
+      "id": 20,
+      "word": "Rakı",
+      "forbidden": [
+        "İçki",
+        "Balık",
+        "Beyaz",
+        "Sofra",
+        "Meze"
+      ]
+    },
+    {
+      "id": 21,
+      "word": "Selfi",
+      "forbidden": [
+        "Fotoğraf",
+        "Telefon",
+        "Kamera",
+        "Çekmek",
+        "Yüz"
+      ]
+    },
+    {
+      "id": 22,
+      "word": "Diploma",
+      "forbidden": [
+        "Mezuniyet",
+        "Üniversite",
+        "Okul",
+        "Belge",
+        "Bitirmek"
+      ]
+    },
+    {
+      "id": 23,
+      "word": "Çay Bardağı",
+      "forbidden": [
+        "İçmek",
+        "Sıcak",
+        "Cam",
+        "İnce Bel",
+        "Türk"
+      ]
+    },
+    {
+      "id": 24,
+      "word": "GPS",
+      "forbidden": [
+        "Harita",
+        "Yol",
+        "Navigasyon",
+        "Konum",
+        "Uydu"
+      ]
+    },
+    {
+      "id": 25,
+      "word": "Lahmacun",
+      "forbidden": [
+        "Yemek",
+        "Kıyma",
+        "İnce",
+        "Yuvarlak",
+        "Limon"
+      ]
+    },
+    {
+      "id": 26,
+      "word": "Hamam",
+      "forbidden": [
+        "Yıkanmak",
+        "Sıcak",
+        "Kese",
+        "Köpük",
+        "Türk"
+      ]
+    },
+    {
+      "id": 27,
+      "word": "Powerbank",
+      "forbidden": [
+        "Şarj",
+        "Telefon",
+        "Pil",
+        "Elektrik",
+        "Taşınabilir"
+      ]
+    },
+    {
+      "id": 28,
+      "word": "Nazar",
+      "forbidden": [
+        "Göz",
+        "Mavi",
+        "Boncuk",
+        "Kötü",
+        "Bak"
+      ]
+    },
+    {
+      "id": 29,
+      "word": "Metrobüs",
+      "forbidden": [
+        "İstanbul",
+        "Ulaşım",
+        "Otobüs",
+        "Kalabalık",
+        "Yol"
+      ]
+    },
+    {
+      "id": 30,
+      "word": "Baklava",
+      "forbidden": [
+        "Tatlı",
+        "Fıstık",
+        "Şerbet",
+        "Yufka",
+        "Gaziantep"
+      ]
+    },
+    {
+      "id": 31,
+      "word": "Emoji",
+      "forbidden": [
+        "Yüz",
+        "Mesaj",
+        "Telefon",
+        "Gülen",
+        "Sembol"
+      ]
+    },
+    {
+      "id": 32,
+      "word": "Nostalji",
+      "forbidden": [
+        "Geçmiş",
+        "Hatıra",
+        "Özlem",
+        "Eski",
+        "Anı"
+      ]
+    },
+    {
+      "id": 33,
+      "word": "WiFi",
+      "forbidden": [
+        "İnternet",
+        "Bağlantı",
+        "Şifre",
+        "Kablosuz",
+        "Modem"
+      ]
+    },
+    {
+      "id": 34,
+      "word": "Rüya",
+      "forbidden": [
+        "Uyku",
+        "Görmek",
+        "Gece",
+        "Hayal",
+        "Kabus"
+      ]
+    },
+    {
+      "id": 35,
+      "word": "Meme",
+      "forbidden": [
+        "Komik",
+        "İnternet",
+        "Resim",
+        "Paylaşmak",
+        "Viral"
+      ]
+    },
+    {
+      "id": 36,
+      "word": "Fatura",
+      "forbidden": [
+        "Ödemek",
+        "Para",
+        "Elektrik",
+        "Su",
+        "Borç"
+      ]
+    },
+    {
+      "id": 37,
+      "word": "Kuaför",
+      "forbidden": [
+        "Saç",
+        "Kesmek",
+        "Makas",
+        "Berber",
+        "Şekil"
+      ]
+    },
+    {
+      "id": 38,
+      "word": "Otostop",
+      "forbidden": [
+        "Araba",
+        "Yol",
+        "Parmak",
+        "Ücretsiz",
+        "Durdurmak"
+      ]
+    },
+    {
+      "id": 39,
+      "word": "Horoskop",
+      "forbidden": [
+        "Burç",
+        "Yıldız",
+        "Falcı",
+        "Gelecek",
+        "Günlük"
+      ]
+    },
+    {
+      "id": 40,
+      "word": "Çiğ Köfte",
+      "forbidden": [
+        "Acı",
+        "Kıyma",
+        "Yoğurmak",
+        "Lavaş",
+        "Marul"
+      ]
+    },
+    {
+      "id": 41,
+      "word": "Algoritma",
+      "forbidden": [
+        "Bilgisayar",
+        "Kod",
+        "Sıra",
+        "Program",
+        "Hesap"
+      ]
+    },
+    {
+      "id": 42,
+      "word": "Türk Kahvesi",
+      "forbidden": [
+        "İçmek",
+        "Fincan",
+        "Telve",
+        "Fal",
+        "Köpük"
+      ]
+    },
+    {
+      "id": 43,
+      "word": "AVM",
+      "forbidden": [
+        "Alışveriş",
+        "Mağaza",
+        "Merkez",
+        "Yürümek",
+        "Marka"
+      ]
+    },
+    {
+      "id": 44,
+      "word": "VPN",
+      "forbidden": [
+        "İnternet",
+        "Yasaklı",
+        "Bağlantı",
+        "Gizli",
+        "Erişim"
+      ]
+    },
+    {
+      "id": 45,
+      "word": "Hacı",
+      "forbidden": [
+        "Mekke",
+        "Dini",
+        "Kabe",
+        "Hac",
+        "Ziyaret"
+      ]
+    },
+    {
+      "id": 46,
+      "word": "Tatil",
+      "forbidden": [
+        "Dinlenmek",
+        "Gitmek",
+        "Deniz",
+        "İş",
+        "Otel"
+      ]
+    },
+    {
+      "id": 47,
+      "word": "Kapadokya",
+      "forbidden": [
+        "Balon",
+        "Peri Bacası",
+        "Nevşehir",
+        "Turist",
+        "Mağara"
+      ]
+    },
+    {
+      "id": 48,
+      "word": "Gamer",
+      "forbidden": [
+        "Oyun",
+        "Bilgisayar",
+        "Oynamak",
+        "Konsol",
+        "Online"
+      ]
+    },
+    {
+      "id": 49,
+      "word": "Pamukkale",
+      "forbidden": [
+        "Beyaz",
+        "Travertenler",
+        "Denizli",
+        "Termal",
+        "Su"
+      ]
+    },
+    {
+      "id": 50,
+      "word": "Influencer",
+      "forbidden": [
+        "Sosyal Medya",
+        "Takipçi",
+        "Reklam",
+        "Instagram",
+        "Ünlü"
+      ]
+    },
+    {
+      "id": 51,
+      "word": "Mangal",
+      "forbidden": [
+        "Et",
+        "Ateş",
+        "Piknik",
+        "Kömür",
+        "Şiş"
+      ]
+    },
+    {
+      "id": 52,
+      "word": "Podcast",
+      "forbidden": [
+        "Dinlemek",
+        "Ses",
+        "Program",
+        "Kulaklık",
+        "Bölüm"
+      ]
+    },
+    {
+      "id": 53,
+      "word": "Tavla",
+      "forbidden": [
+        "Zar",
+        "Oyun",
+        "Pul",
+        "Atma",
+        "Çift"
+      ]
+    },
+    {
+      "id": 54,
+      "word": "Ghosting",
+      "forbidden": [
+        "Cevap",
+        "Mesaj",
+        "İlişki",
+        "Yok Olmak",
+        "Engel"
+      ]
+    },
+    {
+      "id": 55,
+      "word": "Kumpir",
+      "forbidden": [
+        "Patates",
+        "Fırın",
+        "Malzeme",
+        "Ortaköy",
+        "Tereyağı"
+      ]
+    },
+    {
+      "id": 56,
+      "word": "Algoritma",
+      "forbidden": [
+        "Instagram",
+        "Gönderi",
+        "Takipçi",
+        "Görünmek",
+        "Öneri"
+      ]
+    },
+    {
+      "id": 57,
+      "word": "Ayran",
+      "forbidden": [
+        "Yoğurt",
+        "İçmek",
+        "Tuzlu",
+        "Soğuk",
+        "Beyaz"
+      ]
+    },
+    {
+      "id": 58,
+      "word": "Freelance",
+      "forbidden": [
+        "Serbest",
+        "Çalışmak",
+        "Proje",
+        "Evden",
+        "Bağımsız"
+      ]
+    },
+    {
+      "id": 59,
+      "word": "Okey",
+      "forbidden": [
+        "Taş",
+        "Oyun",
+        "Dört",
+        "Per",
+        "Masa"
+      ]
+    },
+    {
+      "id": 60,
+      "word": "ChatGPT",
+      "forbidden": [
+        "Yapay Zeka",
+        "Robot",
+        "Soru",
+        "Cevap",
+        "Yazmak"
+      ]
+    },
+    {
+      "id": 61,
+      "word": "Muhallebi",
+      "forbidden": [
+        "Süt",
+        "Tatlı",
+        "Beyaz",
+        "Pudra",
+        "Soğuk"
+      ]
+    },
+    {
+      "id": 62,
+      "word": "Spoiler",
+      "forbidden": [
+        "Film",
+        "Söylemek",
+        "Son",
+        "Dizi",
+        "Açıklamak"
+      ]
+    },
+    {
+      "id": 63,
+      "word": "Nargile",
+      "forbidden": [
+        "İçmek",
+        "Duman",
+        "Kafe",
+        "Tütün",
+        "Su"
+      ]
+    },
+    {
+      "id": 64,
+      "word": "Yemeksepeti",
+      "forbidden": [
+        "Sipariş",
+        "Uygulama",
+        "Yemek",
+        "Kurye",
+        "Teslim"
+      ]
+    },
+    {
+      "id": 65,
+      "word": "Pide",
+      "forbidden": [
+        "Fırın",
+        "Hamur",
+        "Kaşarlı",
+        "Kıymalı",
+        "Uzun"
+      ]
+    },
+    {
+      "id": 66,
+      "word": "Mülteci",
+      "forbidden": [
+        "Sığınmak",
+        "Ülke",
+        "Savaş",
+        "Kaçmak",
+        "Göç"
+      ]
+    },
+    {
+      "id": 67,
+      "word": "Enflasyon",
+      "forbidden": [
+        "Para",
+        "Fiyat",
+        "Artmak",
+        "Ekonomi",
+        "Zam"
+      ]
+    },
+    {
+      "id": 68,
+      "word": "Köfte",
+      "forbidden": [
+        "Et",
+        "Kıyma",
+        "Yuvarlak",
+        "Izgara",
+        "Ekmek"
+      ]
+    },
+    {
+      "id": 69,
+      "word": "Trollemek",
+      "forbidden": [
+        "Dalga",
+        "İnternet",
+        "Kışkırtmak",
+        "Yorum",
+        "Şaka"
+      ]
+    },
+    {
+      "id": 70,
+      "word": "Lokum",
+      "forbidden": [
+        "Tatlı",
+        "Fıstık",
+        "Türk",
+        "Pudra",
+        "Şeker"
+      ]
+    },
+    {
+      "id": 71,
+      "word": "Taksi",
+      "forbidden": [
+        "Araba",
+        "Sarı",
+        "Şoför",
+        "Para",
+        "Taksimetre"
+      ]
+    },
+    {
+      "id": 72,
+      "word": "Dondurma",
+      "forbidden": [
+        "Soğuk",
+        "Tatlı",
+        "Yaz",
+        "Maraş",
+        "Uzayan"
+      ]
+    },
+    {
+      "id": 73,
+      "word": "Borsa",
+      "forbidden": [
+        "Hisse",
+        "Para",
+        "Yatırım",
+        "Düşmek",
+        "Çıkmak"
+      ]
+    },
+    {
+      "id": 74,
+      "word": "Kebap",
+      "forbidden": [
+        "Et",
+        "Şiş",
+        "Adana",
+        "Urfa",
+        "Ateş"
+      ]
+    },
+    {
+      "id": 75,
+      "word": "Marathon",
+      "forbidden": [
+        "Koşmak",
+        "Yarış",
+        "42",
+        "Kilometre",
+        "Maraton"
+      ]
+    },
+    {
+      "id": 76,
+      "word": "Künefe",
+      "forbidden": [
+        "Tatlı",
+        "Peynir",
+        "Sıcak",
+        "Kadayıf",
+        "Antep"
+      ]
+    },
+    {
+      "id": 77,
+      "word": "Startup",
+      "forbidden": [
+        "Şirket",
+        "Girişim",
+        "Yatırım",
+        "Teknoloji",
+        "Kurmak"
+      ]
+    },
+    {
+      "id": 78,
+      "word": "Tantuni",
+      "forbidden": [
+        "Et",
+        "Dürüm",
+        "Mersin",
+        "Acı",
+        "Lavaş"
+      ]
+    },
+    {
+      "id": 79,
+      "word": "Burnout",
+      "forbidden": [
+        "Tükenmek",
+        "İş",
+        "Yorgunluk",
+        "Stres",
+        "Çalışmak"
+      ]
+    },
+    {
+      "id": 80,
+      "word": "Mantı",
+      "forbidden": [
+        "Yoğurt",
+        "Hamur",
+        "Kayseri",
+        "Küçük",
+        "Sarımsak"
+      ]
+    }
+  ]
+}
