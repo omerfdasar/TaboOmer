@@ -1,3 +1,4 @@
+import { useMemo, useCallback } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { EffectCards } from 'swiper/modules'
 import type { Swiper as SwiperType } from 'swiper'
@@ -17,13 +18,25 @@ interface CardSwiperProps {
   disabled?: boolean
 }
 
-export default function CardSwiper({ cards, onSlideChange, disabled = false }: CardSwiperProps) {
-  // Limit cards for performance
-  const gameCards = cards.slice(0, MAX_CARDS_PER_GAME)
+// Detect low-end devices for reduced animations
+const isLowEndDevice = typeof navigator !== 'undefined' && navigator.hardwareConcurrency <= 4
 
-  const handleSlideChange = (swiper: SwiperType) => {
+export default function CardSwiper({ cards, onSlideChange, disabled = false }: CardSwiperProps) {
+  // Memoize card slicing to prevent recalculation on every render
+  const gameCards = useMemo(() => cards.slice(0, MAX_CARDS_PER_GAME), [cards])
+
+  // Memoize slide change handler to prevent unnecessary Swiper re-renders
+  const handleSlideChange = useCallback((swiper: SwiperType) => {
     onSlideChange(swiper.activeIndex + 1)
-  }
+  }, [onSlideChange])
+
+  // Optimized swiper config - reduced effects for low-end devices
+  const cardsEffectConfig = useMemo(() => ({
+    perSlideOffset: isLowEndDevice ? 6 : 8,
+    perSlideRotate: isLowEndDevice ? 0 : 2,
+    rotate: !isLowEndDevice,
+    slideShadows: false,
+  }), [])
 
   return (
     <div
@@ -42,12 +55,8 @@ export default function CardSwiper({ cards, onSlideChange, disabled = false }: C
         allowSlidePrev={!disabled}
         allowTouchMove={!disabled}
         style={{ width: '100%', height: '100%' }}
-        cardsEffect={{
-          perSlideOffset: 8,
-          perSlideRotate: 2,
-          rotate: true,
-          slideShadows: false,
-        }}
+        cardsEffect={cardsEffectConfig}
+        speed={isLowEndDevice ? 200 : 300}
       >
         {gameCards.map((card) => (
           <SwiperSlide key={card.id}>

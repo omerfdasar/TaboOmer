@@ -113,10 +113,17 @@ body {
   opacity: 0.7;
 }
 
-/* Card realistic shadow - using box-shadow for better performance */
-.card-container {
+/* Card performance optimization with CSS containment */
+.card-content {
   will-change: transform;
   transform: translateZ(0);
+  contain: layout style paint;
+  backface-visibility: hidden;
+}
+
+/* Hide non-visible cards from rendering pipeline */
+.card-swiper-wrapper .swiper-slide:not(.swiper-slide-active):not(.swiper-slide-next):not(.swiper-slide-prev) {
+  content-visibility: auto;
 }
 
 /* Swiper performance optimization */
@@ -124,6 +131,20 @@ body {
   will-change: transform;
   transform: translateZ(0);
   backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+}
+
+/* Reduce paint complexity during swipe */
+.card-swiper-wrapper .swiper-wrapper {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Optimize touch response */
+.card-swiper-wrapper {
+  touch-action: pan-x;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Ensure confetti canvas doesn't block touch events */

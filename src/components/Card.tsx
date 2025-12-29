@@ -1,11 +1,14 @@
+import { memo } from 'react'
+
 interface CardProps {
   word: string
   forbidden: string[]
 }
 
-export default function Card({ word, forbidden }: CardProps) {
+// Memoized to prevent unnecessary re-renders during swipe animations
+const Card = memo(function Card({ word, forbidden }: CardProps) {
   return (
-    <div className="card-container w-full h-full">
+    <div className="card-content w-full h-full">
       <div className="w-full h-full bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl shadow-2xl overflow-hidden border-4 border-amber-200 flex flex-col">
 
         {/* Top decorative band */}
@@ -56,4 +59,6 @@ export default function Card({ word, forbidden }: CardProps) {
       </div>
     </div>
   )
-}
+})
+
+export default Card
