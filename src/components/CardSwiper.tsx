@@ -1,4 +1,4 @@
-import { useMemo, useCallback } from 'react'
+import { useMemo, useCallback, useRef, useImperativeHandle, forwardRef, useEffect } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { EffectCards } from 'swiper/modules'
 import type { Swiper as SwiperType } from 'swiper'
@@ -16,12 +16,41 @@ interface CardSwiperProps {
   cards: CardData[]
   onSlideChange: (index: number) => void
   disabled?: boolean
+  blockSwipe?: boolean // Block manual swipe but allow button-triggered slideNext
+}
+
+export interface CardSwiperHandle {
+  slideNext: () => void
 }
 
 // Detect low-end devices for reduced animations
 const isLowEndDevice = typeof navigator !== 'undefined' && navigator.hardwareConcurrency <= 4
 
-export default function CardSwiper({ cards, onSlideChange, disabled = false }: CardSwiperProps) {
+const CardSwiper = forwardRef<CardSwiperHandle, CardSwiperProps>(function CardSwiper(
+  { cards, onSlideChange, disabled = false, blockSwipe = false },
+  ref
+) {
+  const swiperRef = useRef<SwiperType | null>(null)
+
+  // Expose slideNext method to parent (only blocked when fully disabled, not when just swipe blocked)
+  useImperativeHandle(ref, () => ({
+    slideNext: () => {
+      if (swiperRef.current && !disabled) {
+        swiperRef.current.slideNext()
+      }
+    }
+  }), [disabled])
+
+  // Manual swipe is blocked if disabled OR blockSwipe is true
+  const manualSwipeBlocked = disabled || blockSwipe
+
+  // Update swiper instance when blockSwipe/disabled changes
+  useEffect(() => {
+    if (swiperRef.current) {
+      swiperRef.current.allowTouchMove = !manualSwipeBlocked
+    }
+  }, [manualSwipeBlocked])
+
   // Memoize card slicing to prevent recalculation on every render
   const gameCards = useMemo(() => cards.slice(0, MAX_CARDS_PER_GAME), [cards])
 
@@ -48,12 +77,13 @@ export default function CardSwiper({ cards, onSlideChange, disabled = false }: C
     >
       <Swiper
         effect="cards"
-        grabCursor={!disabled}
+        grabCursor={!manualSwipeBlocked}
         modules={[EffectCards]}
+        onSwiper={(swiper) => { swiperRef.current = swiper }}
         onSlideChange={handleSlideChange}
         allowSlideNext={!disabled}
         allowSlidePrev={!disabled}
-        allowTouchMove={!disabled}
+        allowTouchMove={!manualSwipeBlocked}
         style={{ width: '100%', height: '100%' }}
         cardsEffect={cardsEffectConfig}
         speed={isLowEndDevice ? 200 : 300}
@@ -66,4 +96,6 @@ export default function CardSwiper({ cards, onSlideChange, disabled = false }: C
       </Swiper>
     </div>
   )
-}
+})
+
+export default CardSwiper

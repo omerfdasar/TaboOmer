@@ -3,45 +3,22 @@
 @import "swiper/css/effect-cards";
 
 @theme {
-  /* New Year Theme Colors */
-  --color-bg-dark: #1a0a2e;
-  --color-bg-light: #16213e;
-  --color-gold: #ffd700;
-  --color-gold-light: #ffed4a;
-  --color-pink: #ff6b9d;
-  --color-cyan: #4ecdc4;
-  --color-orange: #ff9f43;
-  --color-green: #26de81;
+  /* Clean Modern Theme */
+  --color-bg-primary: #1e293b;
+  --color-bg-secondary: #334155;
+  --color-accent: #10b981;
+  --color-accent-light: #34d399;
+  --color-cream: #faf8f5;
+  --color-cream-dark: #f5f0e8;
 
-  /* Glassmorphism */
-  --color-glass: rgba(255, 255, 255, 0.1);
-  --color-glass-border: rgba(255, 255, 255, 0.2);
+  /* Team Colors */
+  --color-team-red: #ef4444;
+  --color-team-blue: #3b82f6;
 
-  /* Animations */
-  --animate-shimmer: shimmer 2s ease-in-out infinite;
-  --animate-float: float 3s ease-in-out infinite;
-  --animate-pulse-glow: pulse-glow 2s ease-in-out infinite;
-
-  @keyframes shimmer {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
-
-  @keyframes pulse-glow {
-    0%, 100% {
-      text-shadow: 0 0 20px rgba(255, 215, 0, 0.8),
-                   0 0 40px rgba(255, 215, 0, 0.4);
-    }
-    50% {
-      text-shadow: 0 0 30px rgba(255, 215, 0, 1),
-                   0 0 60px rgba(255, 215, 0, 0.6);
-    }
-  }
+  /* UI Colors */
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
 }
 
 * {
@@ -58,7 +35,7 @@ html, body, #root {
 
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background: linear-gradient(135deg, var(--color-bg-dark) 0%, var(--color-bg-light) 100%);
+  background: linear-gradient(165deg, #1e293b 0%, #0f172a 50%, #1e293b 100%);
   color: white;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -66,23 +43,24 @@ body {
   overscroll-behavior: none;
 }
 
-/* Glassmorphism Card */
-.glass-card {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 24px;
+/* Card Base Styling */
+.card-base {
+  background: linear-gradient(180deg, #faf8f5 0%, #f5f0e8 100%);
+  border: 1px solid rgba(16, 185, 129, 0.2);
 }
 
-/* Gold Glow Text */
-.gold-glow {
-  color: var(--color-gold);
-  text-shadow:
-    0 0 20px rgba(255, 215, 0, 0.8),
-    0 0 40px rgba(255, 215, 0, 0.4),
-    0 0 60px rgba(255, 215, 0, 0.2);
-  animation: var(--animate-pulse-glow);
+/* Card Header - Green */
+.card-header {
+  background: linear-gradient(135deg, #059669 0%, #10b981 50%, #059669 100%);
+}
+
+/* Glass Panel */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
 }
 
 /* Swiper customization */

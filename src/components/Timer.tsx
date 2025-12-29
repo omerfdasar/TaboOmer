@@ -51,13 +51,11 @@ export default function Timer({ initialSeconds, team, onTimeUp, onReset }: Timer
   const isLowTime = seconds <= 10
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-2">
       {/* Team indicator */}
       <div
-        className={`w-4 h-4 rounded-full ${
+        className={`w-3 h-3 rounded-full ${
           team === 'red' ? 'bg-red-500' : 'bg-blue-500'
-        } shadow-lg ${
-          team === 'red' ? 'shadow-red-500/50' : 'shadow-blue-500/50'
         }`}
       />
 
@@ -67,19 +65,17 @@ export default function Timer({ initialSeconds, team, onTimeUp, onReset }: Timer
         className={`px-4 py-2 rounded-xl font-mono font-bold text-xl transition-all ${
           isLowTime
             ? 'bg-red-500/20 text-red-400 animate-pulse'
-            : team === 'red'
-            ? 'bg-red-500/20 text-red-300'
-            : 'bg-blue-500/20 text-blue-300'
+            : 'bg-slate-800/60 text-slate-200'
         }`}
       >
         {formatTime(seconds)}
-        {!isRunning && <span className="ml-2 text-sm">||</span>}
+        {!isRunning && <span className="ml-2 text-xs text-slate-500">||</span>}
       </button>
 
       {/* Reset button */}
       <button
         onClick={resetTimer}
-        className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 text-white/60 hover:bg-white/20 transition-colors"
+        className="w-8 h-8 flex items-center justify-center rounded-lg bg-slate-800/60 text-slate-400 hover:text-white hover:bg-slate-700/60 transition-all"
         title="Yeniden Basla"
       >
         <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

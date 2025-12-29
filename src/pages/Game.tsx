@@ -1,8 +1,9 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import CardSwiper from '../components/CardSwiper'
+import type { CardSwiperHandle } from '../components/CardSwiper'
+import ScoreButtons from '../components/ScoreButtons'
 import Progress from '../components/Progress'
-// import Confetti from '../components/Confetti'
 import StartScreen from '../components/StartScreen'
 import Timer from '../components/Timer'
 import initialWordsData from '../data/words.json'
@@ -30,7 +31,27 @@ interface TeamsStorage {
 
 const STORAGE_KEY = 'taboo-cards'
 const TEAMS_STORAGE_KEY = 'taboo-teams'
+const SCORES_STORAGE_KEY = 'taboo-scores'
 const CARDS_PER_SESSION = 50
+
+interface TeamScores {
+  red: number
+  blue: number
+}
+
+function getStoredScores(): TeamScores {
+  const stored = localStorage.getItem(SCORES_STORAGE_KEY)
+  if (stored) {
+    return JSON.parse(stored)
+  }
+  return { red: 0, blue: 0 }
+}
+
+function saveTeamScore(team: 'red' | 'blue', scoreToAdd: number) {
+  const scores = getStoredScores()
+  scores[team] += scoreToAdd
+  localStorage.setItem(SCORES_STORAGE_KEY, JSON.stringify(scores))
+}
 
 function getStoredCards(): CardData[] {
   const stored = localStorage.getItem(STORAGE_KEY)
@@ -80,6 +101,12 @@ function saveTeamProgress(team: 'red' | 'blue', seenCount: number) {
   }
 }
 
+interface ScoreState {
+  correct: number
+  pass: number
+  taboo: number
+}
+
 export default function Game() {
   const [currentIndex, setCurrentIndex] = useState(1)
   const [cards, setCards] = useState<CardData[]>([])
@@ -89,6 +116,10 @@ export default function Game() {
   const [timerKey, setTimerKey] = useState(0)
   const [gameKey, setGameKey] = useState(0)
   const [isTimeUp, setIsTimeUp] = useState(false)
+  const [score, setScore] = useState<ScoreState>({ correct: 0, pass: 0, taboo: 0 })
+
+  const swiperRef = useRef<CardSwiperHandle>(null)
+  const cardAnsweredRef = useRef(true) // Track if current card was answered via button
 
   const handleStart = (team: 'red' | 'blue', duration: number) => {
     let teams = getTeamsStorage()
@@ -116,10 +147,41 @@ export default function Game() {
     setCurrentIndex(1)
     setGameKey(prev => prev + 1)
     setIsTimeUp(false)
+    setScore({ correct: 0, pass: 0, taboo: 0 })
+    cardAnsweredRef.current = false // First card needs to be answered too
     setGameState({ team, duration })
   }
 
+  // Score button handlers - mark card as answered before advancing
+  const handleCorrect = useCallback(() => {
+    cardAnsweredRef.current = true
+    setScore(prev => ({ ...prev, correct: prev.correct + 1 }))
+    swiperRef.current?.slideNext()
+  }, [])
+
+  const handlePass = useCallback(() => {
+    cardAnsweredRef.current = true
+    setScore(prev => ({ ...prev, pass: prev.pass + 1 }))
+    swiperRef.current?.slideNext()
+  }, [])
+
+  const handleTaboo = useCallback(() => {
+    cardAnsweredRef.current = true
+    setScore(prev => ({ ...prev, taboo: prev.taboo + 1 }))
+    swiperRef.current?.slideNext()
+  }, [])
+
+  // Calculate total score
+  const totalScore = score.correct - score.taboo
+
   const handleSlideChange = useCallback((index: number) => {
+    // If previous card wasn't answered via button, count as pass (swipe = pass)
+    if (!cardAnsweredRef.current) {
+      setScore(prev => ({ ...prev, pass: prev.pass + 1 }))
+    }
+
+    // Reset for the new card
+    cardAnsweredRef.current = false
     setCurrentIndex(index)
 
     // Save progress for current team
@@ -140,11 +202,16 @@ export default function Game() {
   }, [])
 
   const handleBackToStart = () => {
+    // Save the round score for the team
+    if (gameState && totalScore !== 0) {
+      saveTeamScore(gameState.team, totalScore)
+    }
     setGameState(null)
   }
 
   const handleResetTeams = () => {
     localStorage.removeItem(TEAMS_STORAGE_KEY)
+    localStorage.removeItem(SCORES_STORAGE_KEY)
     initializeTeams()
   }
 
@@ -155,34 +222,36 @@ export default function Game() {
 
   return (
     <div className="h-full flex flex-col">
-      {/* Confetti disabled temporarily for debugging */}
-      {/* <Confetti /> */}
-
-      {/* Top bar with Timer and Settings */}
+      {/* Top bar */}
       <div className="pt-4 safe-area-top px-4 flex items-center justify-between shrink-0">
         {/* Back button */}
         <button
           onClick={handleBackToStart}
-          className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 text-white/60 hover:bg-white/20 transition-colors"
+          className="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-800/60 text-slate-400 hover:text-white hover:bg-slate-700/60 transition-all"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
         </button>
 
-        {/* Timer */}
-        <Timer
-          key={timerKey}
-          initialSeconds={gameState.duration}
-          team={gameState.team}
-          onTimeUp={handleTimeUp}
-          onReset={handleTimerReset}
-        />
+        {/* Timer and Score */}
+        <div className="flex flex-col items-center">
+          <Timer
+            key={timerKey}
+            initialSeconds={gameState.duration}
+            team={gameState.team}
+            onTimeUp={handleTimeUp}
+            onReset={handleTimerReset}
+          />
+          <div className={`text-sm font-bold mt-1 ${totalScore >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+            Skor: {totalScore > 0 ? '+' : ''}{totalScore}
+          </div>
+        </div>
 
         {/* Settings button */}
         <Link
           to="/admin"
-          className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 text-white/60 hover:bg-white/20 transition-colors"
+          className="w-10 h-10 flex items-center justify-center rounded-xl bg-slate-800/60 text-slate-400 hover:text-white hover:bg-slate-700/60 transition-all"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
@@ -191,46 +260,81 @@ export default function Game() {
         </Link>
       </div>
 
-      {/* Main Content - Cards */}
-      <main className="flex-1 flex flex-col items-center justify-center px-4">
-        {currentIndex >= cards.length ? (
+      {/* Main Content */}
+      <main className="flex-1 flex flex-col items-center justify-center px-4 overflow-hidden">
+        {currentIndex >= cards.length || isTimeUp ? (
           /* Round Complete Screen */
-          <div className="text-center">
-            <div className="text-6xl mb-6">🎉</div>
-            <h2 className="text-3xl font-black text-white mb-3">Tur Bitti!</h2>
-            <p className="text-white/60 mb-8">
-              {cards.length} kart tamamlandi
-            </p>
+          <div className="text-center w-full max-w-sm">
+            <h2 className="text-2xl font-bold text-white mb-6">
+              {isTimeUp ? 'Sure Doldu!' : 'Tur Bitti!'}
+            </h2>
+
+            {/* Score Summary */}
+            <div className="bg-slate-800/60 rounded-2xl p-6 mb-6 border border-slate-700/50">
+              <div className={`text-5xl font-black mb-2 ${totalScore >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                {totalScore > 0 ? '+' : ''}{totalScore}
+              </div>
+              <div className="text-slate-500 text-sm mb-6">Toplam Puan</div>
+
+              <div className="flex justify-center gap-8">
+                <div className="flex flex-col items-center">
+                  <span className="text-2xl font-bold text-emerald-400">{score.correct}</span>
+                  <span className="text-xs text-slate-500 uppercase tracking-wide">Dogru</span>
+                </div>
+                <div className="flex flex-col items-center">
+                  <span className="text-2xl font-bold text-slate-400">{score.pass}</span>
+                  <span className="text-xs text-slate-500 uppercase tracking-wide">Pas</span>
+                </div>
+                <div className="flex flex-col items-center">
+                  <span className="text-2xl font-bold text-amber-400">{score.taboo}</span>
+                  <span className="text-xs text-slate-500 uppercase tracking-wide">Tabu</span>
+                </div>
+              </div>
+            </div>
+
             <button
               onClick={handleBackToStart}
-              className={`px-8 py-4 rounded-2xl font-bold text-lg transition-all ${
+              className={`w-full py-4 rounded-2xl font-bold text-lg transition-all active:scale-[0.98] ${
                 gameState?.team === 'red'
-                  ? 'bg-red-500 hover:bg-red-600'
-                  : 'bg-blue-500 hover:bg-blue-600'
-              } text-white shadow-lg`}
+                  ? 'bg-red-500 hover:bg-red-600 shadow-lg shadow-red-500/30'
+                  : 'bg-blue-500 hover:bg-blue-600 shadow-lg shadow-blue-500/30'
+              } text-white`}
             >
               Devam Et
             </button>
           </div>
         ) : (
           <>
-            <CardSwiper key={gameKey} cards={cards} onSlideChange={handleSlideChange} disabled={isTimeUp} />
+            <CardSwiper
+              ref={swiperRef}
+              key={gameKey}
+              cards={cards}
+              onSlideChange={handleSlideChange}
+              disabled={isTimeUp}
+              blockSwipe={score.pass >= 4}
+            />
 
-            {/* Progress */}
-            <div className="mt-8">
-              <Progress current={currentIndex} total={totalRemaining} />
+            {/* Score Buttons */}
+            <div className="mt-5 w-full px-2">
+              <ScoreButtons
+                onCorrect={handleCorrect}
+                onPass={handlePass}
+                onTaboo={handleTaboo}
+                disabled={isTimeUp}
+                passCount={score.pass}
+              />
             </div>
 
-            {/* Swipe Hint */}
-            <p className="mt-4 text-white/40 text-sm">
-              ← Kaydir →
-            </p>
+            {/* Progress */}
+            <div className="mt-4">
+              <Progress current={currentIndex} total={totalRemaining} />
+            </div>
           </>
         )}
       </main>
 
       {/* Footer Safe Area */}
-      <div className="h-6 safe-area-bottom" />
+      <div className="h-4 safe-area-bottom" />
     </div>
   )
 }
