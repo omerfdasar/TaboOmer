@@ -46,6 +46,7 @@ export default function StartScreen({ onStart, onReset }: StartScreenProps) {
   const [selectedDuration, setSelectedDuration] = useState<number>(90)
   const [progress, setProgress] = useState<TeamProgress | null>(null)
   const [scores, setScores] = useState<TeamScores>({ red: 0, blue: 0 })
+  const [showResetConfirm, setShowResetConfirm] = useState(false)
 
   useEffect(() => {
     setProgress(getTeamProgress())
@@ -58,12 +59,19 @@ export default function StartScreen({ onStart, onReset }: StartScreenProps) {
     }
   }
 
-  const handleReset = () => {
-    if (confirm('Tum takim ilerlemeleri ve skorlar sifirlanacak. Emin misin?')) {
-      onReset()
-      setProgress(getTeamProgress())
-      setScores({ red: 0, blue: 0 })
-    }
+  const handleResetClick = () => {
+    setShowResetConfirm(true)
+  }
+
+  const handleResetConfirm = () => {
+    onReset()
+    setProgress(getTeamProgress())
+    setScores({ red: 0, blue: 0 })
+    setShowResetConfirm(false)
+  }
+
+  const handleResetCancel = () => {
+    setShowResetConfirm(false)
   }
 
   const getCardsRemaining = (team: 'red' | 'blue') => {
@@ -199,7 +207,7 @@ export default function StartScreen({ onStart, onReset }: StartScreenProps) {
           {/* Reset Button - separated with more space */}
           {progress && (
             <button
-              onClick={handleReset}
+              onClick={handleResetClick}
               className="w-full mt-12 py-3 text-slate-500 hover:text-red-400 transition-all text-sm flex items-center justify-center gap-2 border-t border-slate-800 pt-6"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -210,6 +218,32 @@ export default function StartScreen({ onStart, onReset }: StartScreenProps) {
           )}
         </div>
       </div>
+
+      {/* Reset Confirmation Modal */}
+      {showResetConfirm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/70">
+          <div className="bg-slate-800 rounded-2xl p-6 max-w-sm w-full border border-slate-700">
+            <h3 className="text-lg font-bold text-white mb-2">Oyunu Sifirla</h3>
+            <p className="text-slate-400 text-sm mb-6">
+              Tum takim ilerlemeleri ve skorlar sifirlanacak. Emin misin?
+            </p>
+            <div className="flex gap-3">
+              <button
+                onClick={handleResetCancel}
+                className="flex-1 py-3 rounded-xl font-medium text-slate-300 bg-slate-700 hover:bg-slate-600 transition-colors"
+              >
+                Vazgec
+              </button>
+              <button
+                onClick={handleResetConfirm}
+                className="flex-1 py-3 rounded-xl font-medium text-white bg-red-500 hover:bg-red-600 transition-colors"
+              >
+                Sifirla
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

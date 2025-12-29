@@ -23,8 +23,8 @@ export interface CardSwiperHandle {
   slideNext: () => void
 }
 
-// Detect low-end devices for reduced animations
-const isLowEndDevice = typeof navigator !== 'undefined' && navigator.hardwareConcurrency <= 4
+// Detect touch device for optimized swipe settings
+const isTouchDevice = typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0)
 
 const CardSwiper = forwardRef<CardSwiperHandle, CardSwiperProps>(function CardSwiper(
   { cards, onSlideChange, disabled = false, blockSwipe = false },
@@ -59,11 +59,11 @@ const CardSwiper = forwardRef<CardSwiperHandle, CardSwiperProps>(function CardSw
     onSlideChange(swiper.activeIndex + 1)
   }, [onSlideChange])
 
-  // Optimized swiper config - reduced effects for low-end devices
+  // Card effect config - keep rotation for natural feel
   const cardsEffectConfig = useMemo(() => ({
-    perSlideOffset: isLowEndDevice ? 6 : 8,
-    perSlideRotate: isLowEndDevice ? 0 : 2,
-    rotate: !isLowEndDevice,
+    perSlideOffset: 8,
+    perSlideRotate: 2,
+    rotate: true,
     slideShadows: false,
   }), [])
 
@@ -86,7 +86,20 @@ const CardSwiper = forwardRef<CardSwiperHandle, CardSwiperProps>(function CardSw
         allowTouchMove={!manualSwipeBlocked}
         style={{ width: '100%', height: '100%' }}
         cardsEffect={cardsEffectConfig}
-        speed={isLowEndDevice ? 200 : 300}
+        // Transition speed
+        speed={250}
+        // Touch settings for natural feel
+        touchRatio={1.2}
+        threshold={isTouchDevice ? 5 : 10}
+        touchStartPreventDefault={false}
+        // Follow finger movement
+        followFinger={true}
+        // Resistance when reaching edges
+        resistance={true}
+        resistanceRatio={0.85}
+        // Short swipes work too
+        shortSwipes={true}
+        longSwipesRatio={0.3}
       >
         {gameCards.map((card) => (
           <SwiperSlide key={card.id}>
