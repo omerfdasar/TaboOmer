@@ -1,13 +1,9 @@
 import { useState, useEffect } from 'react'
+import { getStacksProgress, type StackNumber } from '../pages/Game'
 
 interface StartScreenProps {
-  onStart: (team: 'red' | 'blue', duration: number) => void
+  onStart: (team: 'red' | 'blue', duration: number, stack: StackNumber) => void
   onReset: () => void
-}
-
-interface TeamProgress {
-  red: { seen: number; total: number }
-  blue: { seen: number; total: number }
 }
 
 interface TeamScores {
@@ -21,18 +17,6 @@ const TIMER_OPTIONS = [
   { label: '2 dk', value: 120 },
 ]
 
-function getTeamProgress(): TeamProgress | null {
-  const stored = localStorage.getItem('taboo-teams')
-  if (stored) {
-    const teams = JSON.parse(stored)
-    return {
-      red: { seen: teams.red.seenCount, total: teams.red.cards.length },
-      blue: { seen: teams.blue.seenCount, total: teams.blue.cards.length }
-    }
-  }
-  return null
-}
-
 function getTeamScores(): TeamScores {
   const stored = localStorage.getItem('taboo-scores')
   if (stored) {
@@ -41,21 +25,29 @@ function getTeamScores(): TeamScores {
   return { red: 0, blue: 0 }
 }
 
+interface StackProgress {
+  stack: StackNumber
+  redRemaining: number
+  blueRemaining: number
+  total: number
+}
+
 export default function StartScreen({ onStart, onReset }: StartScreenProps) {
   const [selectedTeam, setSelectedTeam] = useState<'red' | 'blue' | null>(null)
   const [selectedDuration, setSelectedDuration] = useState<number>(90)
-  const [progress, setProgress] = useState<TeamProgress | null>(null)
+  const [selectedStack, setSelectedStack] = useState<StackNumber>(1)
+  const [stacksProgress, setStacksProgress] = useState<StackProgress[]>([])
   const [scores, setScores] = useState<TeamScores>({ red: 0, blue: 0 })
   const [showResetConfirm, setShowResetConfirm] = useState(false)
 
   useEffect(() => {
-    setProgress(getTeamProgress())
     setScores(getTeamScores())
+    setStacksProgress(getStacksProgress())
   }, [])
 
   const handleStart = () => {
     if (selectedTeam) {
-      onStart(selectedTeam, selectedDuration)
+      onStart(selectedTeam, selectedDuration, selectedStack)
     }
   }
 
@@ -65,7 +57,7 @@ export default function StartScreen({ onStart, onReset }: StartScreenProps) {
 
   const handleResetConfirm = () => {
     onReset()
-    setProgress(getTeamProgress())
+    setStacksProgress(getStacksProgress())
     setScores({ red: 0, blue: 0 })
     setShowResetConfirm(false)
   }
@@ -75,9 +67,10 @@ export default function StartScreen({ onStart, onReset }: StartScreenProps) {
   }
 
   const getCardsRemaining = (team: 'red' | 'blue') => {
-    if (!progress) return null
-    const remaining = progress[team].total - progress[team].seen
-    return remaining > 0 ? remaining : progress[team].total
+    const stackInfo = stacksProgress.find(s => s.stack === selectedStack)
+    if (!stackInfo) return null
+    const remaining = team === 'red' ? stackInfo.redRemaining : stackInfo.blueRemaining
+    return remaining
   }
 
   return (
@@ -121,7 +114,7 @@ export default function StartScreen({ onStart, onReset }: StartScreenProps) {
                   <div className={`text-3xl font-black mb-1 ${scores.red >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
                     {scores.red > 0 ? '+' : ''}{scores.red}
                   </div>
-                  {progress && (
+                  {stacksProgress.length > 0 && (
                     <div className="text-xs text-slate-500">
                       {getCardsRemaining('red')} kart kaldi
                     </div>
@@ -149,7 +142,7 @@ export default function StartScreen({ onStart, onReset }: StartScreenProps) {
                   <div className={`text-3xl font-black mb-1 ${scores.blue >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
                     {scores.blue > 0 ? '+' : ''}{scores.blue}
                   </div>
-                  {progress && (
+                  {stacksProgress.length > 0 && (
                     <div className="text-xs text-slate-500">
                       {getCardsRemaining('blue')} kart kaldi
                     </div>
@@ -187,6 +180,44 @@ export default function StartScreen({ onStart, onReset }: StartScreenProps) {
               </div>
             </div>
           </div>
+
+          {/* Spacer */}
+          <div className="h-8" />
+
+          {/* Stack Selection */}
+          <div>
+            <p className="text-slate-400 text-xs font-medium mb-4 text-center uppercase tracking-[0.2em]">Kart Destesi</p>
+            <div className="flex gap-2 justify-center">
+              {([1, 2, 3, 4, 5] as StackNumber[]).map((stack) => {
+                const stackInfo = stacksProgress.find(s => s.stack === stack)
+                const totalRemaining = stackInfo
+                  ? stackInfo.redRemaining + stackInfo.blueRemaining
+                  : 0
+                const isComplete = stackInfo && totalRemaining === 0
+
+                return (
+                  <button
+                    key={stack}
+                    onClick={() => setSelectedStack(stack)}
+                    className={`w-12 h-12 rounded-xl font-bold text-lg transition-all duration-200 flex flex-col items-center justify-center ${
+                      selectedStack === stack
+                        ? 'bg-emerald-500 text-white ring-2 ring-emerald-400 ring-offset-2 ring-offset-slate-900 shadow-lg shadow-emerald-500/30'
+                        : isComplete
+                          ? 'bg-slate-700/30 text-slate-600 border border-slate-700/50'
+                          : 'bg-slate-800/50 text-slate-300 border border-slate-700/50 hover:border-emerald-500/30'
+                    }`}
+                  >
+                    <span>{stack}</span>
+                    {isComplete && (
+                      <svg xmlns="http://www.w3.org/2000/svg" className="w-3 h-3 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    )}
+                  </button>
+                )
+              })}
+            </div>
+          </div>
         </div>
 
         {/* Bottom Section - Buttons */}
@@ -205,7 +236,7 @@ export default function StartScreen({ onStart, onReset }: StartScreenProps) {
           </button>
 
           {/* Reset Button - separated with more space */}
-          {progress && (
+          {stacksProgress.length > 0 && (
             <button
               onClick={handleResetClick}
               className="w-full mt-12 py-3 text-slate-500 hover:text-red-400 transition-all text-sm flex items-center justify-center gap-2 border-t border-slate-800 pt-6"

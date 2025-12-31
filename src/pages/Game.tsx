@@ -14,9 +14,13 @@ interface CardData {
   forbidden: string[]
 }
 
+export type StackNumber = 1 | 2 | 3 | 4 | 5
+const NUM_STACKS = 5
+
 interface GameState {
   team: 'red' | 'blue'
   duration: number
+  stack: StackNumber
 }
 
 interface TeamState {
@@ -29,8 +33,12 @@ interface TeamsStorage {
   blue: TeamState
 }
 
+interface AllStacksStorage {
+  [key: string]: TeamsStorage // "stack-1", "stack-2", etc.
+}
+
 const STORAGE_KEY = 'taboo-cards'
-const TEAMS_STORAGE_KEY = 'taboo-teams'
+const STACKS_STORAGE_KEY = 'taboo-stacks'
 const SCORES_STORAGE_KEY = 'taboo-scores'
 const CARDS_PER_SESSION = 50
 
@@ -70,18 +78,33 @@ function shuffleArray<T>(array: T[]): T[] {
   return shuffled
 }
 
-function getTeamsStorage(): TeamsStorage | null {
-  const stored = localStorage.getItem(TEAMS_STORAGE_KEY)
+// Get all stacks storage
+function getAllStacksStorage(): AllStacksStorage {
+  const stored = localStorage.getItem(STACKS_STORAGE_KEY)
   if (stored) {
     return JSON.parse(stored)
   }
-  return null
+  return {}
 }
 
-function initializeTeams(): TeamsStorage {
+// Get teams for a specific stack
+function getTeamsForStack(stack: StackNumber): TeamsStorage | null {
+  const allStacks = getAllStacksStorage()
+  return allStacks[`stack-${stack}`] || null
+}
+
+// Initialize teams for a specific stack
+function initializeStack(stack: StackNumber): TeamsStorage {
   const allCards = getStoredCards()
-  // Shuffle and split cards between teams - each team gets unique cards
-  const shuffled = shuffleArray(allCards)
+  const cardsPerStack = Math.floor(allCards.length / NUM_STACKS)
+
+  // Get cards for this stack (stack 1 = first chunk, stack 2 = second chunk, etc.)
+  const startIndex = (stack - 1) * cardsPerStack
+  const endIndex = stack === NUM_STACKS ? allCards.length : startIndex + cardsPerStack
+  const stackCards = allCards.slice(startIndex, endIndex)
+
+  // Shuffle and split between teams
+  const shuffled = shuffleArray(stackCards)
   const midpoint = Math.floor(shuffled.length / 2)
 
   const teams: TeamsStorage = {
@@ -89,16 +112,60 @@ function initializeTeams(): TeamsStorage {
     blue: { cards: shuffled.slice(midpoint), seenCount: 0 }
   }
 
-  localStorage.setItem(TEAMS_STORAGE_KEY, JSON.stringify(teams))
+  // Save to storage
+  const allStacks = getAllStacksStorage()
+  allStacks[`stack-${stack}`] = teams
+  localStorage.setItem(STACKS_STORAGE_KEY, JSON.stringify(allStacks))
+
   return teams
 }
 
-function saveTeamProgress(team: 'red' | 'blue', seenCount: number) {
-  const teams = getTeamsStorage()
-  if (teams) {
-    teams[team].seenCount = seenCount
-    localStorage.setItem(TEAMS_STORAGE_KEY, JSON.stringify(teams))
+// Save team progress for a specific stack
+function saveTeamProgress(stack: StackNumber, team: 'red' | 'blue', seenCount: number) {
+  const allStacks = getAllStacksStorage()
+  const stackKey = `stack-${stack}`
+  if (allStacks[stackKey]) {
+    allStacks[stackKey][team].seenCount = seenCount
+    localStorage.setItem(STACKS_STORAGE_KEY, JSON.stringify(allStacks))
   }
+}
+
+// Get progress info for all stacks (for UI display)
+export function getStacksProgress(): { stack: StackNumber; redRemaining: number; blueRemaining: number; total: number }[] {
+  const allCards = getStoredCards()
+  const cardsPerStack = Math.floor(allCards.length / NUM_STACKS)
+  const allStacks = getAllStacksStorage()
+
+  const progress: { stack: StackNumber; redRemaining: number; blueRemaining: number; total: number }[] = []
+
+  for (let i = 1; i <= NUM_STACKS; i++) {
+    const stack = i as StackNumber
+    const stackKey = `stack-${stack}`
+    const stackData = allStacks[stackKey]
+
+    const totalCards = stack === NUM_STACKS
+      ? allCards.length - (cardsPerStack * (NUM_STACKS - 1))
+      : cardsPerStack
+    const perTeam = Math.floor(totalCards / 2)
+
+    if (stackData) {
+      progress.push({
+        stack,
+        redRemaining: stackData.red.cards.length - stackData.red.seenCount,
+        blueRemaining: stackData.blue.cards.length - stackData.blue.seenCount,
+        total: totalCards
+      })
+    } else {
+      progress.push({
+        stack,
+        redRemaining: perTeam,
+        blueRemaining: perTeam,
+        total: totalCards
+      })
+    }
+  }
+
+  return progress
 }
 
 interface ScoreState {
@@ -121,10 +188,10 @@ export default function Game() {
   const swiperRef = useRef<CardSwiperHandle>(null)
   const cardAnsweredRef = useRef(true) // Track if current card was answered via button
 
-  const handleStart = (team: 'red' | 'blue', duration: number) => {
-    let teams = getTeamsStorage()
+  const handleStart = (team: 'red' | 'blue', duration: number, stack: StackNumber) => {
+    let teams = getTeamsForStack(stack)
     if (!teams) {
-      teams = initializeTeams()
+      teams = initializeStack(stack)
     }
 
     const teamState = teams[team]
@@ -134,7 +201,11 @@ export default function Game() {
     if (remainingCards.length === 0) {
       teamState.cards = shuffleArray(teamState.cards)
       teamState.seenCount = 0
-      localStorage.setItem(TEAMS_STORAGE_KEY, JSON.stringify(teams))
+      // Save reshuffled cards
+      const allStacks = getAllStacksStorage()
+      allStacks[`stack-${stack}`] = teams
+      localStorage.setItem(STACKS_STORAGE_KEY, JSON.stringify(allStacks))
+
       setCards(teamState.cards.slice(0, CARDS_PER_SESSION))
       setTotalRemaining(teamState.cards.length)
       setBaseSeenCount(0)
@@ -149,7 +220,7 @@ export default function Game() {
     setIsTimeUp(false)
     setScore({ correct: 0, pass: 0, taboo: 0 })
     cardAnsweredRef.current = false // First card needs to be answered too
-    setGameState({ team, duration })
+    setGameState({ team, duration, stack })
   }
 
   // Score button handlers - mark card as answered before advancing
@@ -184,11 +255,11 @@ export default function Game() {
     cardAnsweredRef.current = false
     setCurrentIndex(index)
 
-    // Save progress for current team
+    // Save progress for current team and stack
     if (gameState) {
       // Use baseSeenCount from when game started, add current index - 1
       // (index is 1-based, so index 1 = seen 0 new cards, index 2 = seen 1 new card)
-      saveTeamProgress(gameState.team, baseSeenCount + index - 1)
+      saveTeamProgress(gameState.stack, gameState.team, baseSeenCount + index - 1)
     }
   }, [gameState, baseSeenCount])
 
@@ -210,9 +281,8 @@ export default function Game() {
   }
 
   const handleResetTeams = () => {
-    localStorage.removeItem(TEAMS_STORAGE_KEY)
+    localStorage.removeItem(STACKS_STORAGE_KEY)
     localStorage.removeItem(SCORES_STORAGE_KEY)
-    initializeTeams()
   }
 
   // Show start screen if game hasn't started

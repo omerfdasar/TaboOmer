@@ -375,17 +375,6 @@
       ]
     },
     {
-      "id": 35,
-      "word": "Meme",
-      "forbidden": [
-        "Komik",
-        "İnternet",
-        "Resim",
-        "Paylaşmak",
-        "Viral"
-      ]
-    },
-    {
       "id": 36,
       "word": "Fatura",
       "forbidden": [
@@ -3156,6 +3145,964 @@
         "Tugba",
         "Hadim"
       ]
+    },
+    {
+      "id": 290,
+      "word": "Selfie",
+      "forbidden": [
+        "fotoğraf",
+        "telefon",
+        "çubuk",
+        "poz",
+        "sosyal medya"
+      ]
+    },
+    {
+      "id": 291,
+      "word": "Karadenizli",
+      "forbidden": [
+        "hamsi",
+        "horon",
+        "mısır ekmeği",
+        "laz",
+        "trabzon"
+      ]
+    },
+    {
+      "id": 292,
+      "word": "Trafik Canavarı",
+      "forbidden": [
+        "araba",
+        "korna",
+        "sinirli",
+        "şoför",
+        "yol"
+      ]
+    },
+    {
+      "id": 293,
+      "word": "Recep İvedik",
+      "forbidden": [
+        "şahan",
+        "gökbakar",
+        "film",
+        "kaba",
+        "komik"
+      ]
+    },
+    {
+      "id": 294,
+      "word": "Burnu Havada",
+      "forbidden": [
+        "kibirli",
+        "böbürlenmek",
+        "ukala",
+        "zengin",
+        "surat"
+      ]
+    },
+    {
+      "id": 295,
+      "word": "Kaynana",
+      "forbidden": [
+        "gelin",
+        "anne",
+        "ev",
+        "yemek",
+        "dedikodu"
+      ]
+    },
+    {
+      "id": 296,
+      "word": "Kedi",
+      "forbidden": [
+        "miyav",
+        "tırmık",
+        "tekir",
+        "yumak",
+        "süt"
+      ]
+    },
+    {
+      "id": 297,
+      "word": "Çay",
+      "forbidden": [
+        "bardak",
+        "dem",
+        "şeker",
+        "ince belli",
+        "tavşan kanı"
+      ]
+    },
+    {
+      "id": 298,
+      "word": "Karpuz",
+      "forbidden": [
+        "yaz",
+        "çekirdek",
+        "peynir",
+        "yeşil",
+        "kırmızı"
+      ]
+    },
+    {
+      "id": 299,
+      "word": "Evlilik Programı",
+      "forbidden": [
+        "esra erol",
+        "zuhal topal",
+        "damat",
+        "gelin",
+        "kına"
+      ]
+    },
+    {
+      "id": 300,
+      "word": "Sünnet",
+      "forbidden": [
+        "düğün",
+        "kıyafet",
+        "davul",
+        "tip",
+        "tören"
+      ]
+    },
+    {
+      "id": 301,
+      "word": "Tiktok",
+      "forbidden": [
+        "video",
+        "dans",
+        "trend",
+        "düet",
+        "canlı"
+      ]
+    },
+    {
+      "id": 302,
+      "word": "Kışlık Yorgan",
+      "forbidden": [
+        "battaniye",
+        "uyku",
+        "kalın",
+        "dolap",
+        "pamuk"
+      ]
+    },
+    {
+      "id": 303,
+      "word": "Kavun",
+      "forbidden": [
+        "koklamak",
+        "sarı",
+        "yaz",
+        "dilim",
+        "çekirdek"
+      ]
+    },
+    {
+      "id": 304,
+      "word": "İftar",
+      "forbidden": [
+        "ramazan",
+        "oruç",
+        "top",
+        "ezan",
+        "hurma"
+      ]
+    },
+    {
+      "id": 305,
+      "word": "İskender",
+      "forbidden": [
+        "döner",
+        "yoğurt",
+        "tereyağı",
+        "bursa",
+        "pide"
+      ]
+    },
+    {
+      "id": 306,
+      "word": "Kuzey Yıldızı",
+      "forbidden": [
+        "burcu özberk",
+        "aslıhan güner",
+        "yıldız",
+        "köy",
+        "aşk"
+      ]
+    },
+    {
+      "id": 307,
+      "word": "Yalı Çapkını",
+      "forbidden": [
+        "afra",
+        "mert ramazan",
+        "ferit",
+        "seyran",
+        "korhan"
+      ]
+    },
+    {
+      "id": 308,
+      "word": "Kızılcık Şerbeti",
+      "forbidden": [
+        "sıla türkoğlu",
+        "evrim alaş",
+        "nursema",
+        "fatih"
+      ]
+    },
+    {
+      "id": 309,
+      "word": "Gaddar",
+      "forbidden": [
+        "çağatay ulusoy",
+        "sumi",
+        "ateş",
+        "dağhan",
+        "yağı"
+      ]
+    },
+    {
+      "id": 310,
+      "word": "Taş Kağıt Makas",
+      "forbidden": [
+        "buğra gülsoy",
+        "ekin koç",
+        "hatırlama",
+        "kader",
+        "avukat"
+      ]
+    },
+    {
+      "id": 311,
+      "word": "Kapalı Çarşı",
+      "forbidden": [
+        "istanbul",
+        "halı",
+        "altın",
+        "baharat",
+        "pazarlık"
+      ]
+    },
+    {
+      "id": 312,
+      "word": "Galata Kulesi",
+      "forbidden": [
+        "istanbul",
+        "yüksek",
+        "hezarfen",
+        "manzara",
+        "tarihi"
+      ]
+    },
+    {
+      "id": 313,
+      "word": "Ayasofya",
+      "forbidden": [
+        "cami",
+        "istanbul",
+        "kubbe",
+        "bizans",
+        "fatih"
+      ]
+    },
+    {
+      "id": 314,
+      "word": "Anıtkabir",
+      "forbidden": [
+        "atatürk",
+        "ankara",
+        "mozole",
+        "tören",
+        "aslanlı yol"
+      ]
+    },
+    {
+      "id": 315,
+      "word": "Topkapı Sarayı",
+      "forbidden": [
+        "harem",
+        "istanbul",
+        "osmanlı",
+        "kaşıkçı elması",
+        "padişah"
+      ]
+    },
+    {
+      "id": 316,
+      "word": "Efes",
+      "forbidden": [
+        "antik",
+        "izmir",
+        "artemis tapınağı",
+        "celsus kütüphanesi",
+        "tiyatro"
+      ]
+    },
+    {
+      "id": 317,
+      "word": "Sumela Manastırı",
+      "forbidden": [
+        "trabzon",
+        "kayalık",
+        "maşka",
+        "ayasofya",
+        "fresk"
+      ]
+    },
+    {
+      "id": 318,
+      "word": "Uludağ",
+      "forbidden": [
+        "kayak",
+        "bursa",
+        "teleferik",
+        "kar",
+        "otel"
+      ]
+    },
+    {
+      "id": 319,
+      "word": "Göbek Atmak",
+      "forbidden": [
+        "dans",
+        "düğün",
+        "oryantal",
+        "zil",
+        "oynak"
+      ]
+    },
+    {
+      "id": 320,
+      "word": "El Öpmek",
+      "forbidden": [
+        "bayram",
+        "büyüklere",
+        "saygı",
+        "harçlık",
+        "yere eğilmek"
+      ]
+    },
+    {
+      "id": 321,
+      "word": "Nazar Değmesin",
+      "forbidden": [
+        "boncuk",
+        "mavi",
+        "kem göz",
+        "tuz",
+        "dökülmek"
+      ]
+    },
+    {
+      "id": 322,
+      "word": "Ayakları Yere Basmamak",
+      "forbidden": [
+        "mutlu",
+        "heyecan",
+        "havada",
+        "aşk",
+        "sevinç"
+      ]
+    },
+    {
+      "id": 323,
+      "word": "Kuyruk Acısı",
+      "forbidden": [
+        "kin",
+        "intikam",
+        "unutmamak",
+        "eski",
+        "diş bilemek"
+      ]
+    },
+    {
+      "id": 324,
+      "word": "İğneyle Kuyu Kazmak",
+      "forbidden": [
+        "zor",
+        "sabır",
+        "yavaş",
+        "emek",
+        "uzun"
+      ]
+    },
+    {
+      "id": 325,
+      "word": "Pireyi Deve Yapmak",
+      "forbidden": [
+        "abartmak",
+        "büyütmek",
+        "küçük",
+        "olay",
+        "panik"
+      ]
+    },
+    {
+      "id": 326,
+      "word": "Etekleri Zil Çalmak",
+      "forbidden": [
+        "sevinç",
+        "mutlu",
+        "heyecan",
+        "dans",
+        "coşku"
+      ]
+    },
+    {
+      "id": 327,
+      "word": "Dilinin Kemiği Olmamak",
+      "forbidden": [
+        "patavatsız",
+        "konuşkan",
+        "laf",
+        "dobra",
+        "pat diye"
+      ]
+    },
+    {
+      "id": 328,
+      "word": "Gözü Dönmek",
+      "forbidden": [
+        "öfke",
+        "sinir",
+        "kontrolsüz",
+        "kavga",
+        "çılgın"
+      ]
+    },
+    {
+      "id": 329,
+      "word": "Panda",
+      "forbidden": [
+        "siyah beyaz",
+        "bambu",
+        "çin",
+        "ayı",
+        "sevimli"
+      ]
+    },
+    {
+      "id": 331,
+      "word": "Kirpi",
+      "forbidden": [
+        "diken",
+        "yuvarlanmak",
+        "gece",
+        "böcek",
+        "yavru"
+      ]
+    },
+    {
+      "id": 332,
+      "word": "Penguen",
+      "forbidden": [
+        "buz",
+        "antarktika",
+        "yüzmek",
+        "siyah beyaz",
+        "koloni"
+      ]
+    },
+    {
+      "id": 333,
+      "word": "Zürafa",
+      "forbidden": [
+        "boyun",
+        "uzun",
+        "afrika",
+        "yaprak",
+        "benekli"
+      ]
+    },
+    {
+      "id": 334,
+      "word": "Koala",
+      "forbidden": [
+        "okaliptüs",
+        "avustralya",
+        "uyur",
+        "ayı",
+        "ağaç"
+      ]
+    },
+    {
+      "id": 335,
+      "word": "Kaplan",
+      "forbidden": [
+        "çizgili",
+        "orman",
+        "kükremek",
+        "aslan",
+        "av"
+      ]
+    },
+    {
+      "id": 336,
+      "word": "Fil",
+      "forbidden": [
+        "hortum",
+        "büyük",
+        "afrika",
+        "kulak",
+        "fildişi"
+      ]
+    },
+    {
+      "id": 337,
+      "word": "Maymun",
+      "forbidden": [
+        "muz",
+        "ağaç",
+        "kuyruk",
+        "şempanze",
+        "taklit"
+      ]
+    },
+    {
+      "id": 338,
+      "word": "Baykuş",
+      "forbidden": [
+        "gece",
+        "bilge",
+        "dönmek",
+        "baş",
+        "tüy"
+      ]
+    },
+    {
+      "id": 339,
+      "word": "Halay",
+      "forbidden": [
+        "düğün",
+        "mendil",
+        "sıra",
+        "ayak",
+        "ankara"
+      ]
+    },
+    {
+      "id": 340,
+      "word": "Zeybek",
+      "forbidden": [
+        "efe",
+        "efeler",
+        "diz",
+        "harmandalı",
+        "izmir"
+      ]
+    },
+    {
+      "id": 341,
+      "word": "Çiftetelli",
+      "forbidden": [
+        "oryantal",
+        "kalça",
+        "göbek",
+        "müzik",
+        "roman"
+      ]
+    },
+    {
+      "id": 342,
+      "word": "Roman Havası",
+      "forbidden": [
+        "klarnet",
+        "düğün",
+        "hızlı",
+        "9/8",
+        "oynak"
+      ]
+    },
+    {
+      "id": 343,
+      "word": "Kaşık Oyunu",
+      "forbidden": [
+        "ahşap",
+        "ritim",
+        "bursa",
+        "halk oyunları",
+        "vurmak"
+      ]
+    },
+    {
+      "id": 344,
+      "word": "Kenan Doğulu",
+      "forbidden": [
+        "shake",
+        "eurovision",
+        "pop",
+        "şarkı",
+        "best fm"
+      ]
+    },
+    {
+      "id": 345,
+      "word": "Mazhar Alanson",
+      "forbidden": [
+        "mfö",
+        "sarı çizmeli",
+        "şarkı",
+        "grup",
+        "ozan"
+      ]
+    },
+    {
+      "id": 346,
+      "word": "Teoman",
+      "forbidden": [
+        "paramparça",
+        "rock",
+        "gitar",
+        "şarkı",
+        "bıyık"
+      ]
+    },
+    {
+      "id": 347,
+      "word": "Hababam Sınıfı",
+      "forbidden": [
+        "film",
+        "okul",
+        "kemal sunal",
+        "şaban",
+        "tarık akan"
+      ]
+    },
+    {
+      "id": 348,
+      "word": "Süt Kardeşler",
+      "forbidden": [
+        "kemal sunal",
+        "şener şen",
+        "safinaz",
+        "güllüşah",
+        "film"
+      ]
+    },
+    {
+      "id": 349,
+      "word": "Selvi Boylum Al Yazmalım",
+      "forbidden": [
+        "türkan şoray",
+        "kadir inanır",
+        "aşk",
+        "film",
+        "tır"
+      ]
+    },
+    {
+      "id": 350,
+      "word": "Eşkıya",
+      "forbidden": [
+        "şener şen",
+        "uğur yücel",
+        "baran",
+        "cumali",
+        "film"
+      ]
+    },
+    {
+      "id": 351,
+      "word": "Vizontele",
+      "forbidden": [
+        "cem yılmaz",
+        "film",
+        "köy",
+        "televizyon",
+        "tuğba"
+      ]
+    },
+    {
+      "id": 352,
+      "word": "Organize İşler",
+      "forbidden": [
+        "yılmaz erdoğan",
+        "dolandırıcılık",
+        "asım noyan",
+        "film",
+        "komedi"
+      ]
+    },
+    {
+      "id": 353,
+      "word": "Aşk Tesadüfleri Sever",
+      "forbidden": [
+        "film",
+        "mehmet günsür",
+        "belçim bilgin",
+        "ankara",
+        "fotoğraf"
+      ]
+    },
+    {
+      "id": 354,
+      "word": "Kabadayı",
+      "forbidden": [
+        "film",
+        "şener şen",
+        "kenan imirzalıoğlu",
+        "devran",
+        "ali osman"
+      ]
+    },
+    {
+      "id": 355,
+      "word": "Gemide",
+      "forbidden": [
+        "film",
+        "boksör",
+        "tekne",
+        "deniz",
+        "kavga"
+      ]
+    },
+    {
+      "id": 356,
+      "word": "Babam ve Oğlum",
+      "forbidden": [
+        "film",
+        "çetin tekindor",
+        "deprem",
+        "köy",
+        "sadık"
+      ]
+    },
+    {
+      "id": 357,
+      "word": "Whatsapp",
+      "forbidden": [
+        "mesaj",
+        "yeşil tik",
+        "grup",
+        "sesli",
+        "mavi tik"
+      ]
+    },
+    {
+      "id": 360,
+      "word": "Youtube",
+      "forbidden": [
+        "video",
+        "abone",
+        "like",
+        "yorum",
+        "kırmızı"
+      ]
+    },
+    {
+      "id": 361,
+      "word": "Google",
+      "forbidden": [
+        "arama",
+        "harita",
+        "chrome",
+        "mail",
+        "android"
+      ]
+    },
+    {
+      "id": 362,
+      "word": "Facebook",
+      "forbidden": [
+        "duvar",
+        "like",
+        "arkadaş",
+        "mavi",
+        "zuckerberg"
+      ]
+    },
+    {
+      "id": 363,
+      "word": "Snapchat",
+      "forbidden": [
+        "filtre",
+        "hikaye",
+        "sarı",
+        "kaybolan",
+        "mesaj"
+      ]
+    },
+    {
+      "id": 365,
+      "word": "Catan",
+      "forbidden": [
+        "masa",
+        "oyun",
+        "evli",
+        "savaş",
+        "ticaret"
+      ]
+    },
+    {
+      "id": 366,
+      "word": "Halloween",
+      "forbidden": [
+        "cadı",
+        "bayram",
+        "kostüm",
+        "elif enes",
+        "party"
+      ]
+    },
+    {
+      "id": 367,
+      "word": "İltica",
+      "forbidden": [
+        "mülteci",
+        "başvuru",
+        "oturum",
+        "etmek",
+        "kamp"
+      ]
+    },
+    {
+      "id": 368,
+      "word": "Wilrijkseplein",
+      "forbidden": [
+        "futbol",
+        "voleybol",
+        "halisaha",
+        "takim",
+        "top"
+      ]
+    },
+    {
+      "id": 369,
+        "word": "Haldırşaldır",
+        "forbidden": [
+          "Bizim grup",
+          "Voleybol",
+          "Top",
+          "Sporsalonu",
+          "El",
+          "Wilrijkseplein"
+        ]
+      },
+      {
+        "id": 370,
+        "word": "Faruk abi",
+        "forbidden": [
+          "Erkek",
+          "Kadın",
+          "Evlilik",
+          "İmam nikahı",
+          "Tonton dede"
+        ]
+      },
+      {
+        "id": 371,
+        "word": "Ardennen",
+        "forbidden": [
+          "Kamp",
+          "Kitap",
+          "Okuma",
+          "Tatil",
+          "Walonia",
+          "Doğa"
+        ]
+      },
+      {
+        "id": 372,
+        "word": "Catan",
+        "forbidden": [
+          "Masa",
+          "Oyun",
+          "Evli",
+          "Savaş",
+          "Ticaret"
+        ]
+      },
+      {
+        "id": 373,
+        "word": "Halloween",
+        "forbidden": [
+          "Cadı",
+          "Bayram",
+          "Kostüm",
+          "Elif Enes",
+          "Party"
+        ]
+      },
+      {
+        "id": 374,
+        "word": "İltica",
+        "forbidden": [
+          "Mülteci",
+          "Başvuru",
+          "Oturum",
+          "Vatandaşlık",
+          "Kamp"
+        ]
+      },
+      {
+        "id": 375,
+        "word": "VATAN",
+        "forbidden": [
+          "Türkiye",
+          "Yavru",
+          "Ülke",
+          "Belçika",
+          "Millet"
+        ]
+      },
+      {
+        "id": 376,
+        "word": "KORNİŞ",
+        "forbidden": [
+          "Perde",
+          "Tül",
+          "Takmak",
+          "Beyaz",
+          "Güneşlik"
+        ]
+      },
+      {
+        "id": 377,
+        "word": "ANADOLU TAT 1071",
+        "forbidden": [
+          "Feyyaz Yiğit",
+          "Ali Atay",
+          "Ölümlü Dünya",
+          "Süpürge",
+          "Gibi"
+        ]
+      },
+      {
+        "id": 378,
+        "word": "BOŞ YAPMAK",
+        "forbidden": [
+          "Saçma",
+          "Konuşmak",
+          "Alakasız",
+          "Gereksiz",
+          "Anlatmak"
+        ]
+      },
+      {
+        "id": 379,
+        "word": "ARGO",
+        "forbidden": [
+          "Sokak dili",
+          "Jargon",
+          "Küfür",
+          "Hakaret",
+          "Kaba"
+        ]
+      },
+      {
+        "id": 380,
+        "word": "SÜTTEN AĞZI YANMAK",
+        "forbidden": [
+          "Pişman",
+          "Dikkatli",
+          "Yoğurt",
+          "Üflemek",
+          "Tecrübe"
+        ]
     }
   ]
 }
